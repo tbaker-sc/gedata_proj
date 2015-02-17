@@ -10,11 +10,11 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 The run_analysis.R script contained in this repository requires 1 of the two following file configurations to work:
 
-1.  The getdata-projectfiles-UCI HAR Dataset.zip file initially downloaded from the data set URL above must be present in the working directory 
+The getdata-projectfiles-UCI HAR Dataset.zip file initially downloaded from the data set URL above must be present in the working directory 
 (i.e. the same directory as run_analysis.R)
 
 OR
 
-2. The unmodified directory/file structure that results from unzipping the getdata-projectfiles-UCI HAR Dataset.zip file should be 
+The unmodified directory/file structure that results from unzipping the getdata-projectfiles-UCI HAR Dataset.zip file should be 
 present in the working directory.  This means the root folder (UCI HAR Dataset) should be in the same directory as run_analysis.R
 and rest of the subdirectory/file structure should be unchanged from how unzip extracted them.
