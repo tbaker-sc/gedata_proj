@@ -8,6 +8,9 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 The data set to be used with the run_analysis.R script was downloaded from here:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
+The unaltered README from the dataset has been added to the repository as:
+README_from_dataset.txt
+
 ###File Setup Information for  R script
 The run_analysis.R script contained in this repository requires 1 of the 2 following file configurations to work:
 
