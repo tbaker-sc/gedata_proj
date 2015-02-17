@@ -1,13 +1,14 @@
 # gedata_proj
 Stores necessary files for the Coursera "Getting &amp; Cleaning Data" course project
 
-
+### Source Information
 This project uses a data set gathered from Samsung Galaxy S smartphone, described here:
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
 
 The data set to be used with the run_analysis.R script was downloaded from here:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
+###File Setup Information for  R script
 The run_analysis.R script contained in this repository requires 1 of the two following file configurations to work:
 
 The getdata-projectfiles-UCI HAR Dataset.zip file initially downloaded from the data set URL above must be present in the working directory 
