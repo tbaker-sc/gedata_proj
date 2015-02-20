@@ -126,18 +126,18 @@ All column headers that include _std are the standard deviation of the measure d
 
 ### Column Header meanings for tidy_data data frame.
 
-subject_number 
+* subject_number 
 	* Identifies the subject who performed the activity
 	* Possible values 1 : 30
 
-activity_name
+* activity_name
 	* Name of the activity performed
 	* Possible values WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
-measurement
+* measurement
 	* Name of the measurement being captured
 	* This has one of the 66 values listed/described above as the dataset features
 
-mean(value)
+* mean(value)
 	* Average of the summarized values of the measurement
         
