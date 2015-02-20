@@ -37,7 +37,7 @@ test/subject_test.txt
 ###R Setup requirements
 While the run_analysis script will load the dplyr package, it assumes the package has already been installed
 
-###Explanation of run_anlaysis.R script
+###Explanation of run_analysis.R script
 
 1. The first block of code in run_analysis confirms that the files required for this script to run are available in 1 of the 2 options described above.  (See File Setup informtion for run_analysis).  Any issues with finding files will abort the script with an error message sent back to the user.
 
@@ -53,6 +53,6 @@ While the run_analysis script will load the dplyr package, it assumes the packag
 6. The next step adds descriptive activity names (rather than the numbers that were present initially) by merging the data subset created in step 5 with the activity label data read in back in step 3.  The value activity number is used to join these two data sets.
 
 7.  Next, some cleanup is done on the resulting data frame to make it easier to turn it into a tidy data set.  Specifically, 
-  1. Column names are cleaned up; illegal characters for data frame column names in the features.txt file made for messy initial names.  See the codebook.md file for details.
+  1. Column names are cleaned up; illegal characters for data frame column names in the features.txt file made for messy initial names.  See the codebook.md file for details on what the final names mean & specifics on how they were renamed.
   2. The now redundant activity_number column is removed; activity_name is the same information in a much more readable form.
   3. Columns are reordered so subject number is the first column again.  (Not required, just my personal preference.)
