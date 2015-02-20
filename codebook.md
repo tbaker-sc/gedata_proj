@@ -27,7 +27,7 @@ If you're interested in the meaning of additional variables not used in this scr
 6. total_train/total_test - intermediate data frames to hold the items from 3-5 (for training/test respectively) after being combined via cbind
 7. total_data - result of using rbind to combine total_train & total_test into a single data frame
 8. data_subset - total_data after having removed all measurements other than mean and standard deviation.  (Subject & activity label data are also kept)
-9. data_with_activity - data_subset after adding the activity name (via a maerge with activity label) and cleaning up the measurement column names.  The final change made before this becomes final_data (described below) is to re-order the first two columns)
+9. data_with_activity - data_subset after adding the activity name (via a maerge with activity label) and cleaning up the measurement column names.  The final change made before this becomes final_data (described below) is to remove the now redundant activity_number value and that final_data is a local data frame.
 
 
 ### Variable name transformation logic to get from raw names in features.txt to the column names in final_data
@@ -44,6 +44,7 @@ activity_name
 	* Possible values WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
 For each of the column headers below, per the information in the original data set file, features_info.txt:
+
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.
 
 Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).
@@ -121,3 +122,21 @@ fBodyGyro_std_Z
 fBodyAccMag_std
 fBodyBodyAccJerkMag_std
 fBodyBodyGyroMag_std
+
+### Column Header meaning for tidy_data data frame.
+
+subject_number 
+	* Identifies the subject who performed the activity
+	* Possible values 1 : 30
+
+activity_name
+	* Name of the activity performed
+	* Possible values WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+
+measurement
+	* Name of the measurement being captured
+	* This has one of the 66 values listed/described above as the dataset features
+
+mean(value)
+	* Average of the summarized values of the meansurement
+        
