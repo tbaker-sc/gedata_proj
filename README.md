@@ -24,7 +24,7 @@ present in the working directory.  This means the root folder (UCI HAR Dataset) 
 and rest of the subdirectory/file structure should be unchanged from how unzip extracted them.
 
 If there are issues finding individual files in the script, but the root directory was present as described in option 1, the user should confirm that the following 
-files are all in the correct location according to the README_from_dataset.txt file.  The following files should be present in the directory strcucture indicated:
+files are all in the correct location according to the README_from_dataset.txt file.  The following files should be present in the directory structure indicated:
 * activity_labels.txt
 * features.txt
 * train/X_train.txt
@@ -36,19 +36,19 @@ files are all in the correct location according to the README_from_dataset.txt f
 
 ###R Setup requirements
 
-The run_analysis script loads the dplyr package, so it does assume the package has already been installed
+The run_analysis script loads the dplyr package, so it does assume the package has already been installed.
 
 ###Explanation of run_analysis.R script
 
 
-1. The first block of code confirms that the files required for this script to run are available in 1 of the 2 options described above.  (See File Setup informtion for run_analysis.)  Any issues with finding files will abort the script with an error message sent back to the user.
+1. The first block of code confirms that the files required for this script to run are available in 1 of the 2 options described above.  (See File Setup information for run_analysis.)  Any errors finding files will abort the script with an error message sent back to the user.
 
 2. If all files exist, they are read into data frames.  This step goes ahead & assigns preliminary column names for easier data manipulation in later steps.
 
-3. The 6 training & test files are combined to a single data frame, total_data.  
-  * First, cbind is used to bind all training data together to single data frame. 
-  * Then cbind is used again to bind all test data together  to a single data frame - the structure should match the training data frame 
-  * Finally, rbind is used to combine the training & test data frames to a single data frame.  The cbind order when manipulating the training & test data files ensured that the training & test data frames had all columns in the same order, so rbind could be used.
+3. The training & test files are combined to a single data frame, total_data.  
+  * First, cbind is used to bind all training data together to single training data frame.
+  * cbind is used again to bind all test data together to a single test data frame - the order of operations & final structure should match the training data frame.
+  * Finally, rbind is used to combine the training & test data frames to a single data frame, total_data. Since the two steps above ensured the columns were in the same order for the test & training data frames, the rows could easily be combined. 
 
 4. Now that the data has been combined, the dplyr library is loaded to be sure all functions the script uses for data manipulation are available.
 
@@ -65,7 +65,7 @@ The run_analysis script loads the dplyr package, so it does assume the package h
 
 8.  Creating a tidy data set
   1.  From the final state of the raw data (final_data) available at the end of step 7, the following steps are applied to turn this into a tidy data set that meets the tidy data principles of having a single variable per column & a single observation per row.  
-  2. This script produces the long form of the tidy data set, meaning that there is 1 row per subject/activity/measurement and the row contains the mean of the values in the final_data set for that subject/activity/measurement combination.  Please see the codebook for specifics on the structure of the tidy data result.  
+  2. This script produces the long form of the tidy data set, meaning that there is 1 row per subject/activity/measurement.   Each row contains the mean of the values in the final_data set for that subject/activity/measurement combination.  Please see the codebook for specifics on the structure of the tidy data result.  
   3. The steps taken to transform the final_data data frame to a tidy data set are:
     1.  Since this script produces the long form of the tidy data set, the first step is that the 66 measurements still present in final_data must be gathered along with defining a value column to hold the measurement value in each row.  (For specifics on why 66 measurements, please see the explanation in step 5 above on the subselect decision for mean values.)  The subject_number & activity_name are the only existing columns not gathered.
     2.  Since we want 1 row per subject/activity/measurement, the next step is to group by those values so any operations will be applied to the specific grouping
@@ -78,11 +78,10 @@ The run_analysis script loads the dplyr package, so it does assume the package h
 
 ### Instruction for evaluating the output of run_analysis.R
 
-The output of the run_analysis.R script was saved as the file project_tidy_data.txt and submitted to Coursera for evaluation
-The following steps make it possible to evaluate this output:
+The output of the run_analysis.R script was saved as the file project_tidy_data.txt and submitted to Coursera for evaluation. The following steps make it possible to evaluate this output:
 
 1.  Store the file project_tidy_data.txt to your working directory. 
-  1.  I don't know if a fileURL will be made available to graders, but, if one is, then the following set of commands would allow the user to download the data file to their working directory.
+  1.  I don't know if a file URL will be made available to graders, but, if one is, then the following set of commands would allow the user to download the data file to their working directory.
     1.  fileUrl <- "Place the provided URL here"
     2.  download.file(fileUrl, destfile="project_tidy_data.txt", method="curl")  #The method = "curl" option may not be necessary depending on the users machine & the type of URL
   2. If a fileURL is not provided, then the user should use whatever local method is available to save the file project_tidy_data.txt to their R working directory.  If possible, the file name should be preserved so that the commands below will work without modification.
@@ -93,7 +92,7 @@ The following steps make it possible to evaluate this output:
 3. Limitations & Cautions for viewing the data
   1.  Since this is the long form of the data, only the first 1000 rows (out of 11880) will be visible in View.  
   2.  Slightly more can be seen if you print the result to the console, but that still won't display all the rows
-  3.  The full file can of course be viewed in a text editor, but keep in mind that the foramtting may look odd since this was saved only using a single space as a column separator since that the the R default.
+  3.  The full file can of course be viewed in a text editor, but keep in mind that the formatting may look odd since this was saved only using a single space as a column separator since that the R default.
 4.  An explanation of the column headers is available in the project codebook.  Please see the section Column Header meanings for tidy_data data frame, which is the last section of the codebook.  The same column headers used in the tidy_data data frame are present in the output file.
 
 
