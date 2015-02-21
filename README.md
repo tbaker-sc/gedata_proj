@@ -90,8 +90,11 @@ The following steps make it possible to evaluate this output:
   1.  These commands assume you did not change the name of the file from "project_tidy_data.txt".  If you did change the name when storing the file, you will also need to change local file name used in the first command.
   2.  submission <- read.table("project_tidy_data.txt", header = TRUE)
   3.  View(submission)
-  4.  Since this is the long form of the data, only the first 1000 rows (out of 11880) will be visible in View.
-3.  An explanation of the column headers is available in the project codebook.  Please see the section Column Header meanings for tidy_data data frame, which is the last section of the codebook.  The same column headers used in the tidy_data data frame are present in the output file.
+3. Limitations & Cautions for viewing the data
+  1.  Since this is the long form of the data, only the first 1000 rows (out of 11880) will be visible in View.  
+  2.  Slightly more can be seen if you print the result to the console, but that still won't display all the rows
+  3.  The full file can of course be viewed in a text editor, but keep in mind that the foramtting may look odd since this was saved only using a single space as a column separator since that the the R default.
+4.  An explanation of the column headers is available in the project codebook.  Please see the section Column Header meanings for tidy_data data frame, which is the last section of the codebook.  The same column headers used in the tidy_data data frame are present in the output file.
 
 
 ###Other sources
