@@ -46,9 +46,9 @@ The run_analysis script loads the dplyr package, so it does assume the package h
 2. If all files exist, they are read into data frames.  This step goes ahead & assigns preliminary column names for easier data manipulation in later steps.
 
 3. The 6 training & test files are combined to a single data frame, total_data.  
-  * First, cbind is used to bind all traning data together. 
-  * Then cbind is used again to bind all test data together.  
-  * Finally, rbind is used to combine the training & test data frame to a single data frame.  The cbind order when manipulating the training & test data files ensured that the training & test data frames had all columns in the same order, so rbind could be used.
+  * First, cbind is used to bind all training data together to single data frame. 
+  * Then cbind is used again to bind all test data together  to a single data frame - the structure should match the training data frame 
+  * Finally, rbind is used to combine the training & test data frames to a single data frame.  The cbind order when manipulating the training & test data files ensured that the training & test data frames had all columns in the same order, so rbind could be used.
 
 4. Now that the data has been combined, the dplyr library is loaded to be sure all functions the script uses for data manipulation are available.
 
