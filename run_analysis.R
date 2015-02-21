@@ -48,6 +48,8 @@ run_analysis  <- function () {
 	test_subject <- read.table("UCI HAR Dataset/test/subject_test.txt", col.names="subject_number")
 	
 	#Merge data to a single data set
+	#Create 1 training data frame & 1 test data frame with the same structure
+	#Then combine those 2 data frames into a single data frame
 	total_train <- cbind(train_subject, train_y)
 	total_train <- cbind(total_train, train_x)
 	total_test <- cbind(test_subject, test_y)
@@ -68,20 +70,18 @@ run_analysis  <- function () {
 		by.x="activity_number", by.y="activity_number", all=TRUE)
 	
 	#Clean up column names that resulted from features.txt having characters not allowed in 
-	#R data frame column names
+	#R data frame column names and remove redundant activity_number column for  data frame
 	colnames(data_with_activity) <- gsub("...", "_", colnames(data_with_activity), fixed=TRUE)
 	colnames(data_with_activity) <- gsub("..", "", colnames(data_with_activity), fixed=TRUE)
 	colnames(data_with_activity) <- gsub(".", "_", colnames(data_with_activity), fixed=TRUE)
 	
 	final_data <- tbl_df(select(data_with_activity, -activity_number))
 	
+	#Create the long form of the tidy data set where each row contains a mean value for a single combination
+	#of subject, activity & measurement
 	tidy_data <- gather(final_data, measurement, value, -(subject_number:activity_name)) %>%
 		       group_by(subject_number, activity_name, measurement) %>%
 		       summarise(mean(value))
 	return(tidy_data)
-	
-	
-	
-
 	
 }
