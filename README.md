@@ -71,6 +71,11 @@ The run_analysis script loads the dplyr package, so it does assume the package h
     2.  Since we want 1 row per subject/activity/measurement, the next step is to group by those values so any operations will be applied to the specific grouping
     3.  Finally, summarize is used to make sure we have only 1 value per each subject/activity/measurement combination, which guarantees this final data set is tidy by having 1 row per observation.  The mean value is applied during summary so we're storing the average value of each summarized measurement. 
 
+9.  (Outside of run_analysis.R)  The course project instructed us to upload the results of run_analysis, but didn't indicate that should be part of the run_analysis script.  So, the final step of the script is to create (and return) the tidy data set.  However, the following commands were executed in the R console to run and the save the results of run_analysis.R
+  1. source("run_analysis.R")
+  2. output <- run_analysis()
+  3. write.table(output, file = "project_tidy_data.txt", row.name=FALSE)
+
 ### Instruction for evaluating the output of run_analysis.R
 
 The output of the run_analysis.R script was saved as the file project_tidy_data.txt and submitted to Coursera for evaluation
@@ -78,14 +83,17 @@ The following steps make it possible to evaluate this output:
 
 1.  Store the file project_tidy_data.txt to your working directory. 
   1.  I don't know if a fileURL will be made available to graders, but, if one is, then the following set of commands would allow the user to download the data file to their working directory.
-    1.  fileUrl <- "<Place the provided URL here>"
-    2.  download.file(fileUrl, destfile="project_tidy_data.txt", method="curl")  #The method = "curl may not be necessary depending on the users machine & the type of URL
-  2. If a fileURL is not provided, then the user should use whatever local method is available to move save the file project_tidy_data.txt to their R working directory
-2. Read the file into R and then diplay the data using the following commands.  
+    1.  fileUrl <- "Place the provided URL here"
+    2.  download.file(fileUrl, destfile="project_tidy_data.txt", method="curl")  #The method = "curl" option may not be necessary depending on the users machine & the type of URL
+  2. If a fileURL is not provided, then the user should use whatever local method is available to save the file project_tidy_data.txt to their R working directory.  If possible, the file name should be preserved so that the commands below will work without modification.
+2. Read the file into R and then display the data using the following commands.  
   1.  These commands assume you did not change the name of the file from "project_tidy_data.txt".  If you did change the name when storing the file, you will also need to change local file name used in the first command.
   2.  submission <- read.table("project_tidy_data.txt", header = TRUE)
   3.  View(submission)
+  4.  Since this is the long form of the data, only the first 1000 rows (out of 11880) will be visible in View.
 3.  An explanation of the column headers is available in the project codebook.  Please see the section Column Header meanings for tidy_data data frame, which is the last section of the codebook.  The same column headers used in the tidy_data data frame are present in the output file.
 
+
 ###Other sources
-Other than items quoted and noted as coming from explanations given in the original source documentation, all information provided in the README.md & codebook.md files 
+Other than items quoted and noted as coming from the original source documentation, all information provided in the README.md & codebook.md files is original.  However, suggestions on the type of information to include were taken from the course discussion forum thread, 'David's Course Project FAQ', which can be seen here: (assuming you have permission to view the class discussion forum)
+https://class.coursera.org/getdata-011/forum/thread?thread_id=69
