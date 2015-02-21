@@ -124,7 +124,7 @@ All column headers that include _std are the standard deviation of the measure d
 * fBodyBodyAccJerkMag_std
 * fBodyBodyGyroMag_std
 
-### Column Header meanings for tidy_data data frame.
+### Column Header meanings for tidy_data data frame
 
 * subject_number 
 	* Identifies the subject who performed the activity
@@ -136,8 +136,9 @@ All column headers that include _std are the standard deviation of the measure d
 
 * measurement
 	* Name of the measurement being captured
-	* This has one of the 66 values listed/described above as the dataset features
+	* This has one of the 66 values listed/described above as the dataset features.
 
 * mean(value)
-	* Average of the summarized values of the measurement
+	* Average of the summarized values of the measurement. 
+	* This value is grouped by subject, by activity and by measurement then averaged.
         

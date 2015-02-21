@@ -35,24 +35,26 @@ test/y_test.txt
 test/subject_test.txt
 
 ###R Setup requirements
-While the run_analysis script will load the dplyr package, it assumes the package has already been installed
+
+The run_analysis script loads the dplyr package, so it does assume the package has already been installed
 
 ###Explanation of run_analysis.R script
 
 
-1. The first block of code in run_analysis confirms that the files required for this script to run are available in 1 of the 2 options described above.  (See File Setup informtion for run_analysis).  Any issues with finding files will abort the script with an error message sent back to the user.
+1. The first block of code confirms that the files required for this script to run are available in 1 of the 2 options described above.  (See File Setup informtion for run_analysis.)  Any issues with finding files will abort the script with an error message sent back to the user.
 
 2. If all files exist, they are read into data frames.  This step goes ahead & assigns preliminary column names for easier data manipulation in later steps.
 
 3. The 6 training & test files are combined to a single data frame, total_data.  
   * First, cbind is used to bind all traning data together. 
   * Then cbind is used again to bind all test data together.  
-  * Finally, rbind is used to combine the training & test data frame to a single data frame.  The cbind order ensured that the training & test data frames had all columns in the same order, so rbind could be used.
+  * Finally, rbind is used to combine the training & test data frame to a single data frame.  The cbind order when manipulating the training & test data files ensured that the training & test data frames had all columns in the same order, so rbind could be used.
 
 4. Now that the data has been combined, the dplyr library is loaded to be sure all functions the script uses for data manipulation are available.
 
-5. The next step subsets the main data set, selecting out only the mean and standard deviation measurements for each entry in total data.  Subject & activity information are also preserved in the subset since those are needed for later analysis.  
-  1.  There was some ambiguity in regard to the instruction to include mean measurements, specifically that the original dataset included values for mean() and meanFreq() as well as angle() values that also contained Mean in the signal vector names. This script only selects mean() measurements in this subselect since the others are, according to the variable descriptions provided in the original data set, slightly different measurements regardless of the fact that they include mean in the variable name of the measurement.
+5. The next step subsets the total_data data fram, selecting out only the mean and standard deviation measurements for each entry in total_data.  Subject & activity information are also preserved in the subset since those are needed for later analysis.  
+  1.  There was some ambiguity in regard to the instruction to include mean measurements, specifically that the original dataset included values for mean() and meanFreq() as well as angle() values that also contained Mean in the signal vector names. 
+  2.  This script only selects mean() measurements in this subselect since the others are, according to the variable descriptions provided in the original data set, slightly different measurements, regardless of the fact that they include mean in the variable name of the measurement.  
 
 6. The next step adds descriptive activity names (rather than the numbers that were present initially) by merging the data subset created in step 5 with the activity label data read in back in step 3.  The shared value, activity number, is used to join these two data sets.
 
@@ -67,3 +69,22 @@ While the run_analysis script will load the dplyr package, it assumes the packag
     1.  Since this script produces the long form of the tidy data set, the first step is that the 66 measurements still present in final_data must be gathered along with defining a value column to hold the measurement value in each row.  (For specifics on why 66 measurements, please see the explanation in step 5 above on the subselect decision for mean values.)  The subject_number & activity_name are the only existing columns not gathered.
     2.  Since we want 1 row per subject/activity/measurement, the next step is to group by those values so any operations will be applied to the specific grouping
     3.  Finally, summarize is used to make sure we have only 1 value per each subject/activity/measurement combination, which guarantees this final data set is tidy by having 1 row per observation.  The mean value is applied during summary so we're storing the average value of each summarized measurement. 
+
+### Instruction for evaluating the output of run_analysis.R
+
+The output of the run_analysis.R script was saved as the file project_tidy_data.txt and submitted to Coursera for evaluation
+The following steps make it possible to evaluate this output:
+
+1.  Store the file project_tidy_data.txt to your working directory. 
+  1.  I don't know if a fileURL will be made available to graders, but, if one is, then the following set of commands would allow the user to download the data file to their working directory.
+    1.  fileUrl <- "<Place the provided URL here>"
+    2.  download.file(fileUrl, destfile="project_tidy_data.txt", method="curl")  #The method = "curl may not be necessary depending on the users machine & the type of URL
+  2. If a fileURL is not provided, then the user should use whatever local method is available to move save the file project_tidy_data.txt to their R working directory
+2. Read the file into R and then diplay the data using the following commands.  
+  1.  These commands assume you did not change the name of the file from "project_tidy_data.txt".  If you did change the name when storing the file, you will also need to change local file name used in the first command.
+  2.  submission <- read.table("project_tidy_data.txt", header = TRUE)
+  3.  View(submission)
+3.  An explanation of the column headers is available in the project codebook.  Please see the section Column Header meanings for tidy_data data frame, which is the last section of the codebook.  The same column headers used in the tidy_data data frame are present in the output file.
+
+###Other sources
+Other than items quoted and noted as coming from explanations given in the original source documentation, all information provided in the README.md & codebook.md files 
