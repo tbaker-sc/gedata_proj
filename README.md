@@ -52,9 +52,10 @@ The run_analysis script loads the dplyr package, so it does assume the package h
 
 4. Now that the data has been combined, the dplyr library is loaded to be sure all functions the script uses for data manipulation are available.
 
-5. The next step subsets the total_data data fram, selecting out only the mean and standard deviation measurements for each entry in total_data.  Subject & activity information are also preserved in the subset since those are needed for later analysis.  
+5. The next step subsets the total_data data frame, selecting out only the mean and standard deviation measurements out of the features in total_data.  Subject & activity information are also preserved in the subset since those are needed for later analysis.  
   1.  There was some ambiguity in regard to the instruction to include mean measurements, specifically that the original dataset included values for mean() and meanFreq() as well as angle() values that also contained Mean in the signal vector names. 
   2.  This script only selects mean() measurements in this subselect since the others are, according to the variable descriptions provided in the original data set, slightly different measurements, regardless of the fact that they include mean in the variable name of the measurement.  
+  3.  This decision means that 66 features/measurements are retained from the total data set.  The list of 66 items, plus explanation for the naming, can be found in the codebook for this project.
 
 6. The next step adds descriptive activity names (rather than the numbers that were present initially) by merging the data subset created in step 5 with the activity label data read in back in step 3.  The shared value, activity number, is used to join these two data sets.
 
