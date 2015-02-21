@@ -24,15 +24,15 @@ present in the working directory.  This means the root folder (UCI HAR Dataset) 
 and rest of the subdirectory/file structure should be unchanged from how unzip extracted them.
 
 If there are issues finding individual files in the script, but the root directory was present as described in option 1, the user should confirm that the following 
-files are all in the correct location according to the README_from_dataset.txt file.
-activity_labels.txt
-features.txt
-train/X_train.txt
-train/y_train.txt
-train/subject_train.txt
-test/X_test.txt
-test/y_test.txt
-test/subject_test.txt
+files are all in the correct location according to the README_from_dataset.txt file.  The following files should be present in the directory strcucture indicated:
+* activity_labels.txt
+* features.txt
+* train/X_train.txt
+* train/y_train.txt
+* train/subject_train.txt
+* test/X_test.txt
+* test/y_test.txt
+* test/subject_test.txt
 
 ###R Setup requirements
 
