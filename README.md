@@ -71,7 +71,7 @@ The run_analysis script loads the dplyr package, so it does assume the package h
     2.  Since we want 1 row per subject/activity/measurement, the next step is to group by those values so any operations will be applied to the specific grouping
     3.  Finally, summarize is used to make sure we have only 1 value per each subject/activity/measurement combination, which guarantees this final data set is tidy by having 1 row per observation.  The mean value is applied during summary so we're storing the average value of each summarized measurement. 
 
-9.  (Outside of run_analysis.R)  The course project instructed us to upload the results of run_analysis, but didn't indicate that should be part of the run_analysis script.  So, the final step of the script is to create (and return) the tidy data set.  However, the following commands were executed in the R console to run and the save the results of run_analysis.R
+9.  (Outside of run_analysis.R)  The course project instructed us to upload the results of run_analysis, but didn't indicate that storing the output should be part of the run_analysis script.  So, the final step of the script is to create (and return) the tidy data set.  However, the following commands were executed in the R console to run and the save the results of run_analysis.R
   1. source("run_analysis.R")
   2. output <- run_analysis()
   3. write.table(output, file = "project_tidy_data.txt", row.name=FALSE)
