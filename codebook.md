@@ -21,23 +21,25 @@ If you're interested in the meaning of additional variables not used in this scr
 
 1. activity_labels - holds the data from activity_labels.txt, which provides a mapping between activity_number and a readable activity_name.  Ultimately used to name the activities in the subsetted data before tidying the data.
 2. features - holds the data from features.txt which is a list of all the features in each data set.  Used to provide most column names for training & test data.
-3. train_x/test_x - core data set for training/test source data
-4. train_y/test_y - activity number/label for the training/test source data
-5. train_subject/test_subject - the identifier of the subject who carried out the experiment for each row of data in the trainin/test source data
+3. train_x/test_x - core data set for training/test source data.  These files hold 561 values in each row, which correspond to the 561 measures explained fully in the source document features_info.txt.  (The relevent items are also explained below in the explanation for the final data frame.)
+4. train_y/test_y - activity number & label for the training/test source data.  The number of rows in this file matches the correspond train_x/test_x file.
+5. train_subject/test_subject - the identifier of the subject who carried out the experiment for each row of data in the trainin/test source data.  Possible values are 1-30, for the 30 volunteers who participated in this set of experiments, according to the source data documentation.
 6. total_train/total_test - intermediate data frames to hold the items from 3-5 (for training/test respectively) after being combined via cbind
-7. total_data - result of using rbind to combine total_train & total_test into a single data frame
-8. data_subset - total_data after having removed all measurements other than mean and standard deviation.  (Subject & activity label data are also kept)
+7. total_data - result of using rbind to combine total_train & total_test into a single data frame. 
+8. data_subset - total_data after having removed all measurements other than mean and standard deviation.  (Subject & activity label data are also kept.)
 9. data_with_activity - data_subset after adding the activity name (via a merge with activity_labels) and cleaning up the measurement column names.  The final change made before this becomes final_data (described below) is to remove the now redundant activity_number value and that final_data is a local data frame.
 
 
 ### Variable name transformation logic to get from raw names in features.txt to the column names in final_data
-* For all variables in features.txt, reading them in as the column names when creating test_x & test_y stripped out characters that cannot be used in R data frame column names, such as "()", "-", and ","
+* For all variables in features.txt, reading them in as the column names when creating test_x & test_y stripped out characters that cannot be used in R data frame column names, such as "()", "-", and ",".  
+* Because these names were added via the col.names option in the initial data frame creation, illegal characters were replaced with "."  
+* This meant that each measurement name contained varying numbers of "."; while not an absolute requirement, I opted to clean-up these extra characters as part of creating my final data set.
 * Once the initial subset has reduced the columns down the those necessary for later evaluation, gsub is used to remove extraneous ".." from the end of column names as well as replace "." and "..." with "_" to keep the names consistent yet readable.
 
 ### Column Header meaning for final_data data frame.
 
 * subject_number 
-	* Identifies the subject who performed the activity
+	* Identifies the subject (i.e. individual) who performed the activity
 	* Possible values 1 : 30
 
 * activity_name
@@ -140,5 +142,5 @@ All column headers that include _std are the standard deviation of the measure d
 
 * mean(value)
 	* Average of the summarized values of the measurement. 
-	* This value is grouped by subject, by activity and by measurement then averaged.
+	* This value is grouped by subject, by activity and by measurement, then summarized to a single value per measurement while applying mean.
         
